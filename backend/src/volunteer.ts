@@ -4,13 +4,15 @@ class Volunteer {
     id: number;
     startTime: string;
     endTime: string;
-    typeOfWork: string;
-    constructor(na: number, time: string, etime: string, type: string) {
+    typeOfWork: string[];
+    constructor(na: number, time: string, etime: string, type: string[]) {
         this.name = na;
         this.id = Volunteer.counter++;
         this.startTime = time;
         this.endTime = etime;
-        this.typeOfWork = type;
+        for (var i = 0; i < 3; i++) {
+            this.typeOfWork[i] = type[i];
+        }
     }
     
  }
