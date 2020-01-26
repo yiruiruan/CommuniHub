@@ -7,7 +7,7 @@ export class Community {
     id: number;
 
     @Column()
-    name: string;
+    eventName: string;
 
     @Column()
     date: string;
@@ -22,10 +22,7 @@ export class Community {
     typeOfWork: string;
 
     @Column()
-    numNeeded: number;
-
-    @Column()
-    numOfWorker: number;
+    quorum: number;
     
 }
     
