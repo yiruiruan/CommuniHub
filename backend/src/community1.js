@@ -16,10 +16,11 @@ var Community = /** @class */ (function () {
             this.setID();
             var json = JSON.stringify(this);
             console.log(2);
+            console.log('1');
             MongoClient.connect(url, function(err, client) {
                 const db = client.db(dbName);
                 const usersCollection = db.collection('users');
-                console.log('1');
+                console.log('2');
                 var test1 = {"name": "nameTest"};
                 function insert(jsonFile) {
                       //jsonFile = test1
@@ -40,4 +41,4 @@ var Community = /** @class */ (function () {
 }());
 exports.Community = Community;
 
-let test1 = new Community('{ "name": "nameTest", "email": "emailTest", "startTime": "00:00:", "endTime": "23:59", "date": "2020-01-01", "typeOfWork": ["type1","typ2","type3"] }');
+let test1 = Community('{ "name": "nameTest"}');

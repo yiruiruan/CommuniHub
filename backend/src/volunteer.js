@@ -1,6 +1,10 @@
+mongoose.set('useNewUrlParser', true);
+mongoose.set('useFindAndModify', false);
+mongoose.set('useCreateIndex', true);
+mongoose.set('useUnifiedTpoplogy', true);
+var MongoClient = require('mongodb').MongoClient;
+var url = "mongodb://localhost:27017/db";
 
-"use strict";
- db = connect('127.0.0.1:27017/userDB');
 exports.__esModule = true;
 var Volunteer = /** @class */ (function () {
     function Volunteer(event) {
@@ -16,10 +20,30 @@ var Volunteer = /** @class */ (function () {
     }
     Volunteer.prototype.createVEvent = function () {
         var json = JSON.stringify(this);
-        db.names('userDB').insertOne(json);
+        MongoClient.connect(url, function(err, db) {
+            if (err) throw err;
+            var dbo = db.db("db");
+            dbo.collection("db").insertOne(json, function(err, res) {
+                if (err) throw err;
+                console.log("Object added inserted into databse!");
+                db.close();
+            })
+        })
+
+        
     };
     Volunteer.getDataByName = function (name) {
-        var data = db.userDB.find( {"name": name});
+        MongoClient.connect(url, function(err, db) {
+            //if (err) thow err;
+            var dbo = db.db("db");
+            var querry = {"name": "nameTest"};
+            dbo.collection("db").find(querry).toArray(function(err, result) {
+               console.log(result);
+               db.close;
+
+            })
+
+        })
     };
     Volunteer.counter = 0;
     return Volunteer;
