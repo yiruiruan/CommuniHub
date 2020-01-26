@@ -34,14 +34,27 @@ export default class MainPage extends React.Component {
     axios.get("").then(() => {});
   }
 
+  goHomepage() {
+    window.location.replace("/");
+  }
+
   render() {
     return (
       <div className="App">
-        <img
-          src="communihub_logo.png"
-          alt="logo"
-          style={{ position: "absolute", left: 0, right: 0, top: 0, bottom: 0 }}
-        />
+        <button>
+          <img
+            src="communihub_logo.png"
+            alt="logo"
+            style={{
+              position: "absolute",
+              left: 0,
+              right: 0,
+              top: 0,
+              bottom: 0
+            }}
+            onClick={this.goHomepage}
+          />
+        </button>
         {this.state.image && (
           <img src={this.state.image} style={{ borderRadius: 400 / 2 }} />
         )}
