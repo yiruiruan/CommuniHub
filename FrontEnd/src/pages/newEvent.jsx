@@ -80,10 +80,11 @@ export default class NewEventPage extends React.Component {
     
     
     handleSubmit(event) {
-        const body = this.state;
-    axios.post('', body).then(() => {
-      alert('Your event has been succesfully added!')
-    });
+      const body = this.state;
+      
+      axios.post('http://localhost:3001/community', body).then(() => {
+        alert('Your event has been succesfully added!')
+      });
       
     //   POST TO WRITE NEW PROJECT IN DB
       }

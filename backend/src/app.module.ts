@@ -6,20 +6,22 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 // Entities
 import { Volunteer } from './volunteer.entity';
 import { Community } from './community.entity';
+import { Assignment } from './assignment.entity';
 
 // Repositories
 import { VolunteerRepository } from './volunteer.service';
 import { CommunityRepository} from './community.service';
+import { AssignmentRepository } from './assignment.service ';
 
 @Module({
   imports: [
     TypeOrmModule.forRoot({
       type: 'mongodb',
-      url: 'mongodb://localhost:27017/userDB',
-      entities: [Volunteer, Community],
+      url: "mongodb+srv://hanna:ConUhax5@conuhaxv-gixpp.gcp.mongodb.net/test?retryWrites=true&w=majority",
+      entities: [Volunteer, Community, Assignment],
       synchronize: true,
     }),
-    TypeOrmModule.forFeature([VolunteerRepository, CommunityRepository])
+    TypeOrmModule.forFeature([VolunteerRepository, CommunityRepository, AssignmentRepository])
   ],
   controllers: [AppController],
   providers: [],
