@@ -10,6 +10,20 @@ import NewEventPage from './pages/newEvent';
 import VolunteerPage from './pages/volunteer';
 
 class App extends Component {
+
+  state = {
+    api_url: ""
+  }
+
+  handleApiChange = (api) => {
+    this.setState({
+      api_url: api
+    })
+  }
+
+  componentDidMount() {
+  }
+
   render() {
     return <Router>
       <Switch>
