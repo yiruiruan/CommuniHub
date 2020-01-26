@@ -27,6 +27,7 @@ export class AppController {
 
   @Post('/assignment')
   async createAssignment(@Body() body: Object) {
+    console.log(body)
     const assignment = await this.assignmentRepo.create(body);
     return await this.volunteerRepo.save(assignment);
   }
@@ -49,11 +50,11 @@ export class AppController {
   // }
 
   @Post('/assignment')
-  async getAssignment(@Body() body: { id: string }) {
-    const assignment = await this.assignmentRepo.find({
-      eventID: body.id, 
+  async getAssignment(@Body() body: Object) {
+    const assignment = await this.communityRepo.find({
+      eventName: body['eventName'], 
     });
+    return await this.assignmentRepo.insert(body);
 
-    return assignment;
   }
 }

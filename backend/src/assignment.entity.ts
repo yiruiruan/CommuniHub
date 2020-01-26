@@ -7,10 +7,10 @@ export class Assignment {
     id: number;
 
     @Column()
-    eventID: string;
+    eventName: string;
 
     @Column()
-    userID: number;
+    name: string;
     
 }
     
