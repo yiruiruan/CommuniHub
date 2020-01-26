@@ -25,3 +25,27 @@ var Community = /** @class */ (function () {
     return Community;
 }());
 exports.Community = Community;
+
+
+function check_volunteers(communityinfo) {
+    //get info from db 
+    var volunteers = db.getVolData();
+    volunteers.forEach(check);
+    if (this.item == 0) {
+        return;
+    } else {
+        // add this data to the database
+        db.addData(this);
+    }
+}
+
+function check(item) {
+    if (this.numNeeded == 0) return;
+    if (item.startTime == this.startTime && item.endTime <= this.endTime) {
+        if (item.typeOfWork[0] == this.typeOfWork || item.typeOfWork[1] == this.typeOfWork || item.typeOfWork[2] == this.typeOfWork) {
+            this.numNeeded--;
+            // TODO: Notify
+        }
+    }
+}
+
