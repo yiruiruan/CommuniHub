@@ -1,9 +1,10 @@
-import {Community} from "./community";
-import {Volunteer} from "./volunteer";
+import { NestFactory } from '@nestjs/core';
+import { AppModule } from './app.module';
 
-var  test1 = '{ "name": "nameTest", "email": "emailTest", "startTime": "00:00:", "endTime": "23:59", "date": "2020-01-01", "typeOfWork": ["type1","typ2","type3"] }';
+async function bootstrap() {
+  const app = await NestFactory.create(AppModule);
+  app.enableCors();
 
-let firstUSer = new Volunteer(test1);
-var name = "nameTest";
-let userData = Volunteer.getDataByName(name);
-console.log("user found: "+ userData);
+  await app.listen(3000);
+}
+bootstrap();
