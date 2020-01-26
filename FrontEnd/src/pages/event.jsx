@@ -5,7 +5,7 @@ import axios from 'axios';
 export default class EventPage extends React.Component {
   
   state = {
-    type: 'event',
+    type: 'default',
     image: ''
   };
 
@@ -33,15 +33,22 @@ export default class EventPage extends React.Component {
     })
   }
 
+  renderVolunteers(){
+    axios.get('').then(() => {
+      
+    });
+  }
+
   render() {
   return (
     <div className="App">
+      {this.state.image && <img src={this.state.image} />}
       <h3> GET EVENT NAME  </h3>
-      {/* display shutterstock img */}
       <small>
         Volunteers:
       </small>
-      {/* loop volunteers */}
+      {/* loop volunteers and get name and timeslots */}
+      {/* GET FROM DB */}
     </div>
   )
 }

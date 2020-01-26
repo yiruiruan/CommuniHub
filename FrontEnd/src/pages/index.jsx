@@ -33,6 +33,12 @@ export default class MainPage extends React.Component {
       })
     }
 
+    renderEvents(){
+    axios.get('').then(() => {
+      
+    });
+  }
+
     render() {
   return (
     
@@ -47,17 +53,18 @@ export default class MainPage extends React.Component {
       NEW VOLUNTEER APPLICATION
       </Button> </Link>
 
-      <Link to="/event" style={{ textDecoration: 'none' }}> <Button variant="contained" color="secondary">
-      (arraynumber).eventName
-      </Button> </Link>
-      
       <small>
         ASSIGNMENTS:
       </small>
+      {/* //demo */}
+      <Link to="/event" style={{ textDecoration: 'none' }}> <Button variant="outlined" color="secondary">
+      (arraynumber).eventName
+      </Button> </Link>
       {/* loop events (for each row in result.data) */}
       {/* <Link to="/event" style={{ textDecoration: 'none' }}> <Button variant="contained" color="secondary">
       (arraynumber).eventName
       </Button> </Link> */}
+      {/* GET FROM DB */}
       {this.state.projects.map(projects => <li>{projects.name}</li>)}
     </div>
   )
