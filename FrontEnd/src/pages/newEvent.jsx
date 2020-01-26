@@ -3,6 +3,7 @@ import React from 'react';
 import '../App.css';
 import axios from 'axios';
 import Button from '@material-ui/core/Button';
+import moment from 'moment';
 
 
 export default class NewEventPage extends React.Component {
@@ -34,9 +35,9 @@ export default class NewEventPage extends React.Component {
         super(props);
         this.state = {
             eventName: '' || undefined,
-            date: new Date() || undefined,
-            startTime: '' || undefined,
-            endTime: '' || undefined,
+            date: moment().format().substring(0, 10) || undefined,
+            startTime: moment().format('LT') || undefined,
+            endTime: moment().format('LT') || undefined,
             type: '' || undefined,
             quorum: '' || undefined,
         };
@@ -79,14 +80,12 @@ export default class NewEventPage extends React.Component {
     
     
     handleSubmit(event) {
-        var string = "{name=" + this.state.eventName 
-        + ", date="+ this.state.date 
-        + ", startTime=" + this.state.startTime
-        + ", endTime=" +this.state.endTime
-        + ", typeOfWork=" + this.state.type 
-        + ", numNeeded=" +this.state.quorum + "}"
-        console.log(string)
-      alert('A name was submitted: ' + this.state.eventName);
+        const body = this.state;
+    axios.post('', body).then(() => {
+      alert('Your event has been succesfully added!')
+    });
+      
+    //   POST TO WRITE NEW PROJECT IN DB
       }
     
       render() {
