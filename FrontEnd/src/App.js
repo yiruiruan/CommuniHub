@@ -6,8 +6,8 @@ import { BrowserRouter as Router, Route, Switch, Link, Redirect } from "react-ro
 //Pages
 import MainPage from "./pages";
 import NewEventPage from './pages/newEvent';
-
 import VolunteerPage from './pages/volunteer';
+import EventPage from './pages/event';
 
 class App extends Component {
 
@@ -30,6 +30,7 @@ class App extends Component {
       <Route exact path="/" component={MainPage} />
       <Route exact path="/newEvent" component={NewEventPage} />
       <Route exact path="/volunteer" component={VolunteerPage} />
+      <Route exact path="/event" component={EventPage} />
       </Switch>
     </Router>
   }

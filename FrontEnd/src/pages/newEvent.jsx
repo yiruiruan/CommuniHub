@@ -1,9 +1,34 @@
 
 import React from 'react';
 import '../App.css';
+import axios from 'axios';
+import Button from '@material-ui/core/Button';
 
 
 export default class NewEventPage extends React.Component {
+
+    state = {
+        projects: [],
+        image: ''
+      };
+  
+      componentDidMount() {
+        axios.get('https://api.shutterstock.com/v2/images/search?query=community', {
+          auth: {
+            username: '0BQG2MOeAYW71gyAa9eqmSqyoqpKSG5L',
+            password: 'R5pkYG1gX6hSGBTi'
+          }
+        }).then(({ data }) => {
+          console.log(data)
+          console.log(data.data.length)
+          var rndm = Math.floor(Math.random() * (data.data.length-1)) + 1 
+          console.log(rndm)
+          this.setState({
+            ...this.state,
+            image: data.data[rndm].assets.preview.url
+          })
+        })
+      }
 
     constructor(props) {
         super(props);
@@ -68,6 +93,7 @@ export default class NewEventPage extends React.Component {
         return (
             <div className="App">
                 <h3>CREATE A NEW EVENT</h3>
+                {this.state.image && <img src={this.state.image} />}
                 {/* Make form to create new event */}
                 {/* eventName, startTime, endTime, type */}
                 
@@ -96,7 +122,9 @@ export default class NewEventPage extends React.Component {
                         Number of Volunteers Needed: 
                         <input type="text" value={this.state.quorum} onChange={this.handleQuorumChange} />
                     </label><br></br>
-                <input type="submit" value="Submit" />
+                    <Button type="submit" value="Submit" variant="contained" color="primary">
+                SUBMIT
+                </Button>
                 </form>
             </div>
         )
