@@ -88,9 +88,9 @@ handleSubmit(event) {
       alert('You will be assigned to a project shortly!')
     });
     
-    axios.post('http://localhost:3001/assignment', body).then(() => {
-      alert('You\'ve been assigned!')
-    });
+    // axios.post('http://localhost:3001/assignment', body).then(() => {
+    //   alert('You\'ve been assigned!')
+    // });
     this.props.history.push('/');
   // POST TO ENTER NEW VOLUNTEER IN DB
   }
