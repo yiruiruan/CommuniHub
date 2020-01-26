@@ -1,10 +1,12 @@
 // db = connect('127.0.0.1:27017/userDB');
 
+
 export class Community {
     static counter = 0;
-    date: string;
-    name: number;
+
+    name: string;
     id: number;
+    date: string;
     startTime: string;
     endTime: string;
     typeOfWork: string;

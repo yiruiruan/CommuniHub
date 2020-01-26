@@ -3,13 +3,15 @@
 
 export class Volunteer {
     static counter = 0;
-    name: number;
+
     email: string;
+    name: string;
     id: number;
+    date: string;
     startTime: string;
     endTime: string;
     typeOfWork: string[];
-    date: string;
+    
     constructor(event: string) {
         let obj = JSON.parse(event);
         this.email = obj.email;
