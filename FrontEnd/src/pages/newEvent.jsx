@@ -108,11 +108,11 @@ export default class NewEventPage extends React.Component {
                     </label><br></br>
                     <label>
                         Start Time: 
-                        <input type="text" value={this.state.startTime} onChange={this.handleStartTimeChange} />
+                        <input type="text" value={this.state.startTime} onChange={this.handleStartTimeChange} pattern="^([0-1]?[0-9]|2[0-3]):[0-5][0-9]$"/>
                     </label><br></br>
                     <label>
                         End Time: 
-                        <input type="text" value={this.state.endTime} onChange={this.handleEndTimeChange} />
+                        <input type="text" value={this.state.endTime} onChange={this.handleEndTimeChange} pattern="^([0-1]?[0-9]|2[0-3]):[0-5][0-9]$"/>
                     </label><br></br>
                     <label>
                         Type: 
@@ -120,7 +120,7 @@ export default class NewEventPage extends React.Component {
                     </label><br></br>
                     <label>
                         Number of Volunteers Needed: 
-                        <input type="text" value={this.state.quorum} onChange={this.handleQuorumChange} />
+                        <input type="number" value={this.state.quorum} onChange={this.handleQuorumChange} pattern="[0-9]*" inputmode="numeric"/>
                     </label><br></br>
                     <Button type="submit" value="Submit" variant="contained" color="primary">
                 SUBMIT
