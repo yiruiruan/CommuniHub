@@ -4,7 +4,9 @@ import axios from 'axios';
 
 export default class EventPage extends React.Component {
   
+  
   state = {
+    volunteers: [],
     type: 'default',
     image: ''
   };
@@ -34,8 +36,10 @@ export default class EventPage extends React.Component {
   }
 
   renderVolunteers(){
-    axios.get('').then(() => {
-      
+    axios.post('http://localhost:3001/community', {id: this.props.location.state.id}).then((volunteers) => {
+      this.setState({
+        volunteers: volunteers.data
+      })
     });
   }
 
@@ -43,12 +47,13 @@ export default class EventPage extends React.Component {
   return (
     <div className="App">
       {this.state.image && <img src={this.state.image} />}
-      <h3> GET EVENT NAME  </h3>
+      <h3> {this.props.location.state.eventName}  </h3>
       <small>
         Volunteers:
       </small>
       {/* loop volunteers and get name and timeslots */}
       {/* GET FROM DB */}
+      {this.state.volunteers.map((volunteers, i) =>  <ul key={i} to={{pathname:'/event', state: {volunteers}}} style={{ textDecoration: 'none' }}> {volunteers.name} </ul>)}
     </div>
   )
 }

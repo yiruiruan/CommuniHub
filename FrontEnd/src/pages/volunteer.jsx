@@ -52,37 +52,43 @@ console.log(this.state.date);
 handleNameChange(event) {
     console.log(event.target.value)
     this.setState(
-        {name: event.target.value});
+        {...this.state, name: event.target.value});
   }
 handleDateChange(event) {
   this.setState(
-      {date: event.target.value});
+      {...this.state, date: event.target.value});
   }
 handleStartTimeChange(event) {
   this.setState(
-      {startTime:  event.target.value});
+      {...this.state, startTime:  event.target.value});
   }
 handleEndTimeChange(event) {
   this.setState(
-      {endTime: event.target.value});
+      {...this.state, endTime: event.target.value});
   }
 handleTypeChange(event) {
   this.setState(
-      {type: event.target.value});
+      {...this.state, type: event.target.value});
   }
 handleEmailChange(event) {
     this.setState(
-        {email: event.target.value});
+        {...this.state, email: event.target.value});
     }
   
 
 
 handleSubmit(event) {
+    event.preventDefault();
     const body = this.state;
     alert('Thank you for volunteering ' + this.state.name);
-    axios.post('', body).then(() => {
+    axios.post('http://localhost:3001/volunteer', body).then(() => {
       alert('You will be assigned to a project shortly!')
     });
+    
+    axios.post('http://localhost:3001/assignment', body).then(() => {
+      alert('You\'ve been assigned!')
+    });
+    this.props.history.push('/');
   // POST TO ENTER NEW VOLUNTEER IN DB
   }
 

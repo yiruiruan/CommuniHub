@@ -40,21 +40,18 @@ export class AppController {
     return community;
   }
 
-  @Get('/volunteer')
-  async getVolunteer(@Body() body: Object) {
-    const volunteer = await this.volunteerRepo.find({
-      //not sure how but should get volunteers by userID
-      userID: body.userID
-    });
+  // @Post('/volunteer')
+  // async getVolunteer(@Body() body: Object) {
+  //   const volunteer = await this.volunteerRepo.find(
+      
+  //   );
+  //   return volunteer;
+  // }
 
-    return volunteer;
-  }
-
-  @Get('/assignment')
-  async getAssignment(@Body() body: Object) {
+  @Post('/assignment')
+  async getAssignment(@Body() body: { id: string }) {
     const assignment = await this.assignmentRepo.find({
-      //not sure how but should get events by eventID
-      eventID: body.eventID
+      eventID: body.id, 
     });
 
     return assignment;

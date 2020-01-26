@@ -38,7 +38,7 @@ export default class NewEventPage extends React.Component {
             date: moment().format().substring(0, 10) || undefined,
             startTime: moment().format('LT') || undefined,
             endTime: moment().format('LT') || undefined,
-            type: '' || undefined,
+            typeOfWork: '' || undefined,
             quorum: '' || undefined,
         };
     console.log(this.state.date);
@@ -46,7 +46,7 @@ export default class NewEventPage extends React.Component {
         this.handleDateChange = this.handleDateChange.bind(this);
         this.handleStartTimeChange = this.handleStartTimeChange.bind(this);
         this.handleEndTimeChange = this.handleEndTimeChange.bind(this);
-        this.handleTypeChange = this.handleTypeChange.bind(this);
+        this.handleTypeOfWorkChange = this.handleTypeOfWorkChange.bind(this);
         this.handleQuorumChange = this.handleQuorumChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
       }
@@ -54,37 +54,41 @@ export default class NewEventPage extends React.Component {
     handleEventNameChange(event) {
         console.log(event.target.value)
         this.setState(
-            {eventName: event.target.value});
+            {...this.state, eventName: event.target.value});
       }
     handleDateChange(event) {
       this.setState(
-          {date: event.target.value});
+          {...this.state, date: event.target.value});
       }
     handleStartTimeChange(event) {
       this.setState(
-          {startTime:  event.target.value});
+          {...this.state, startTime:  event.target.value});
       }
     handleEndTimeChange(event) {
       this.setState(
-          {endTime: event.target.value});
+          {...this.state, endTime: event.target.value});
       }
-    handleTypeChange(event) {
+    handleTypeOfWorkChange(event) {
       this.setState(
-          {type: event.target.value});
+          {...this.state, typeOfWork: event.target.value});
       }
     handleQuorumChange(event) {
         this.setState(
-            {quorum: event.target.value});
+            {...this.state, quorum: event.target.value});
         }
       
     
     
     handleSubmit(event) {
+      
+      event.preventDefault();
       const body = this.state;
       
       axios.post('http://localhost:3001/community', body).then(() => {
         alert('Your event has been succesfully added!')
       });
+      this.props.history.push('/');
+      
       
     //   POST TO WRITE NEW PROJECT IN DB
       }
@@ -116,7 +120,7 @@ export default class NewEventPage extends React.Component {
                     </label><br></br>
                     <label>
                         Type: 
-                        <input type="text" value={this.state.type} onChange={this.handleTypeChange} />
+                        <input type="text" value={this.state.typeOfWork} onChange={this.handleTypeOfWorkChange} />
                     </label><br></br>
                     <label>
                         Number of Volunteers Needed: 
